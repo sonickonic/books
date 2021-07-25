@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from '../../store';
 import { fetchBooks } from './books-slice';
 
+import { BooksHeader } from './books-header';
 import { BooksList } from './books-list-component';
 import { useQuery } from '../../hooks/useQuery';
 
@@ -16,6 +17,7 @@ export const Books = () => {
 
   return (
     <>
+      <BooksHeader />
       <BooksList />
     </>
   );
