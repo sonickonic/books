@@ -19,7 +19,7 @@ export interface Book {
   book_pages: number;
 }
 
-export type BooksState = BooksResponse;
+export type BooksState = BooksResponse & { isLoading: boolean };
 
 export interface BooksResponse {
   count: number;

@@ -4,10 +4,20 @@ import styled from 'styled-components';
 import List from '@material-ui/core/List';
 
 import { useSelector } from '../../store';
-import { selectBooks, selectCount } from './books-slice';
+import { selectBooks, selectCount, selectIsLoading } from './books-slice';
 import { BookItem } from './books-item-component';
 import { default as Pagination } from '@material-ui/core/TablePagination';
+import { LinearProgress } from '@material-ui/core';
 import { useQuery } from '../../hooks/useQuery';
+
+const LinearProgressStyled = styled(LinearProgress)`
+  && {
+    background-color: var(--orange);
+  }
+  && .MuiLinearProgress-barColorPrimary {
+    background-color: var(--light-orange);
+  }
+`;
 
 const MainStyled = styled.main`
   display: flex;
@@ -23,6 +33,7 @@ export const BooksList = () => {
   const history = useHistory();
   const books = useSelector(selectBooks);
   const count = useSelector(selectCount);
+  const isLoading = useSelector(selectIsLoading);
 
   const handlePageChange = (newPage: number, newItemsPerPage: number) =>
     history.push(
@@ -33,6 +44,8 @@ export const BooksList = () => {
 
   return (
     <>
+      {isLoading && <LinearProgressStyled />}
+
       <MainStyled>
         <List>
           {books.map((book) => (
