@@ -1,4 +1,6 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
+
+import { reducer as booksReducer } from './features/books/books-slice';
 export {
   useAppDispatch as useDispatch,
   useAppSelector as useSelector,
@@ -6,7 +8,9 @@ export {
 
 export const createStore = () =>
   configureStore({
-    reducer: {},
+    reducer: {
+      books: booksReducer,
+    },
   });
 
 export type AppDispatch = typeof store.dispatch;
