@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 import { store } from './store';
 import { GlobalStyles } from './styles/global-styles';
+import { Footer } from './components/footer/footer-component';
 import { Books } from './features/books/books-component';
 
 export const App = () => {
@@ -14,6 +15,7 @@ export const App = () => {
           <Route path="/">
             <GlobalStyles />
             <Books />
+            <Footer />
           </Route>
         </Switch>
       </Router>
