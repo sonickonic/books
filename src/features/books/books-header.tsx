@@ -1,6 +1,7 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import { useDebouncedCallback } from 'use-debounce';
 
 import { Typography } from '@material-ui/core';
 import { Search } from '../../components/search/search-component';
@@ -17,11 +18,11 @@ export const BooksHeader = () => {
   const { itemsPerPage } = useQuery();
   const history = useHistory();
 
-  const onChange = (value: string) => {
+  const onChange = useDebouncedCallback((value: string) => {
     history.push(
       `?page=${1}&itemsPerPage=${itemsPerPage}${value ? `&q=${value}` : ''}`
     );
-  };
+  }, 250);
 
   return (
     <HeaderStyled>
