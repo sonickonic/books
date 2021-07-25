@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { AppThunk } from '../../store';
+import { RootState, AppThunk } from '../../store';
 import { booksAPI } from './books-api';
 import { BooksResponse, BooksState, BooksRequestParams } from './types';
 
@@ -31,5 +31,8 @@ export const fetchBooks =
 
     dispatch(setBooks(books));
   };
+
+export const selectCount = (state: RootState) => state.books.count;
+export const selectBooks = (state: RootState) => state.books.books;
 
 export const reducer = booksSlice.reducer;
