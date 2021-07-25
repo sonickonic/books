@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import styled from 'styled-components';
 import Card from '@material-ui/core/Card';
 import { Box, CardContent, Typography } from '@material-ui/core';
@@ -51,7 +51,7 @@ interface BookItemProps {
   book: Book;
 }
 
-export const BookItem = ({ book }: BookItemProps) => {
+export const UnMemoizedBookItem = ({ book }: BookItemProps) => {
   const {
     book_publication_city,
     book_publication_country,
@@ -87,3 +87,5 @@ export const BookItem = ({ book }: BookItemProps) => {
     </CardStyled>
   );
 };
+
+export const BookItem = memo(UnMemoizedBookItem);
