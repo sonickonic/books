@@ -1,24 +1,17 @@
-import React, { useEffect } from 'react';
-
-import { useDispatch } from '../../store';
-import { fetchBooks } from './books-slice';
-
 import { BooksHeader } from './books-header';
 import { BooksList } from './books-list-component';
 import { useQuery } from '../../hooks/useQuery';
+import { usePostBooksQuery } from './books-api';
 
 export const Books = () => {
-  const dispatch = useDispatch();
   const query = useQuery();
-
-  useEffect(() => {
-    dispatch(fetchBooks(query));
-  }, [query, dispatch]);
+  const { data = { count: 0, books: [] }, isLoading } =
+    usePostBooksQuery(query);
 
   return (
     <>
       <BooksHeader />
-      <BooksList />
+      <BooksList data={data} isLoading={isLoading} />
     </>
   );
 };

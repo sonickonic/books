@@ -157,7 +157,7 @@ export const booksHandlers = [
       return res(ctx.status(200), ctx.json(allBooksResponse));
     }
 
-    if (filters[0]?.values[0] === 'Ο Αλέξανδρος ο Μακεδών') {
+    if (filters?.[0]?.values[0] === 'Ο Αλέξανδρος ο Μακεδών') {
       return res(ctx.status(200), ctx.json(filterResponse));
     }
 

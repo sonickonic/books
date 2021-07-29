@@ -3,12 +3,11 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import List from '@material-ui/core/List';
 
-import { useSelector } from '../../store';
-import { selectBooks, selectCount, selectIsLoading } from './books-slice';
 import { BookItem } from './books-item-component';
 import { default as Pagination } from '@material-ui/core/TablePagination';
 import { LinearProgress } from '@material-ui/core';
 import { useQuery } from '../../hooks/useQuery';
+import { BooksResponse } from './types';
 
 const LinearProgressStyled = styled(LinearProgress)`
   && {
@@ -28,17 +27,20 @@ const MainStyled = styled.main`
   padding: 3rem 1rem;
 `;
 
-export const BooksList = () => {
+interface Props {
+  data: BooksResponse;
+  isLoading: boolean;
+}
+
+export const BooksList = ({ data, isLoading }: Props) => {
+  const { books, count } = data;
   const { page, itemsPerPage, filters } = useQuery();
   const history = useHistory();
-  const books = useSelector(selectBooks);
-  const count = useSelector(selectCount);
-  const isLoading = useSelector(selectIsLoading);
 
   const handlePageChange = (newPage: number, newItemsPerPage: number) =>
     history.push(
       `?page=${newPage}&itemsPerPage=${newItemsPerPage}${
-        filters.length ? `&q=${filters[0].values}` : ''
+        filters?.length ? `&q=${filters[0].values}` : ''
       }`
     );
 

@@ -15,5 +15,7 @@ export const useQuery = () => {
     ? [{ type: 'all', values: filtersValues }]
     : [];
 
-  return { page, itemsPerPage, filters };
+  if (filters.length) return { page, itemsPerPage, filters };
+
+  return { page, itemsPerPage };
 };

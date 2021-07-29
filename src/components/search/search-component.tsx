@@ -26,7 +26,7 @@ interface Props {
 
 export const Search = ({ onChange }: Props) => {
   const { filters } = useQuery();
-  const [value, setValue] = useState(filters[0]?.values[0]);
+  const [value, setValue] = useState(filters?.[0]?.values[0]);
 
   return (
     <InputBaseStyled
